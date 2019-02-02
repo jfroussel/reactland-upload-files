@@ -27,6 +27,7 @@ export default {
     postcss({
       modules: true
     }),
+    scss(),
     url(),
     svgr(),
     babel({

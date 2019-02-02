@@ -1,21 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './styles.css'
+import styles from './styles.scss'
 
-export default class ExampleComponent extends Component {
+export default class UploadFiles extends Component {
   static propTypes = {
-    text: PropTypes.string
+    //text: PropTypes.string
   }
 
   render() {
-    const {
-      text
-    } = this.props
+   
 
     return (
-      <div className={styles.test}>
-        Example Component: {text}
+      <div className="container">
+          upload files
       </div>
     )
   }

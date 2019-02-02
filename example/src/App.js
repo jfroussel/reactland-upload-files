@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import ExampleComponent from 'reactland-upload-files'
+import UploadFiles from 'reactland-upload-files'
 
 export default class App extends Component {
   render () {
     return (
       <div>
-        <ExampleComponent text='Modern React component module' />
+        react upload files example
       </div>
     )
   }
