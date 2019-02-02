@@ -6,7 +6,7 @@ export default class App extends Component {
   render () {
     return (
       <div>
-        react upload files example
+        <UploadFiles />
       </div>
     )
   }
