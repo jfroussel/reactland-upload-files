@@ -42,6 +42,15 @@ const style = {
   },
   progress: {
     width: '25%'
+  },
+  fileIconContainer: {
+   paddingLeft: 30,
+   paddingTop: 10
+    
+  },
+  fileIcon: {
+    fontSize: 40,
+    color: '#d0d5da'
   }
 
 }
@@ -57,10 +66,10 @@ export default class UploadFiles extends Component {
     const Upload = () => {
       return (
         <div className="row">
-          <div className="col-2">
-            <i className="far fa-file-code"></i>
+          <div className="col-1" style={style.fileIconContainer}>
+            <i className="far fa-file-code" style={style.fileIcon}></i>
           </div>
-          <div className="container col-8">
+          <div className="container col-11">
             <div>My Uploade.jpg</div>
             <div>
               <div className="progress">
