@@ -9,7 +9,10 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
-    "reactland-upload-files": "file:.."
+    "reactland-upload-files": "file:..",
+    "bootstrap": "^4.2.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.7"
   },
   "scripts": {
     "start": "react-scripts start",
