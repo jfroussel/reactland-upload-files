@@ -30,6 +30,28 @@
   }
 }
 
+[type="file"] + button {
+  background: #17a2b8;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: inherit;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 1rem 50px;
+  position: relative;
+  transition: all 0.3s;
+  vertical-align: middle;
+  
+  &:hover {
+    background-color: darken(#1dbbd3, 10%);
+  }
+}
+
 
 wrapper {
   background-color: #fff;

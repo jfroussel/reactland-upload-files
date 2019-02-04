@@ -24,12 +24,18 @@ export default class UploadFiles extends Component {
 
     this.fileInput = React.createRef()
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
    
   }
 
   handleChange(event) {
     event.preventDefault()
     this.setState({ files: this.fileInput.current.files })
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    console.log(this.state.files)
   }
 
   bytesToSize(bytes) {
@@ -91,7 +97,7 @@ export default class UploadFiles extends Component {
     return (
 
       <div className="container pt-5">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="row pt-3">
             <div className="col-4 text-center mr-2" style={{ border: 'solid 1px rgb(226, 227, 228)' }}>
               <h3 className="text-center text-uppercase font-weight-lighter">File Upload</h3>
@@ -106,9 +112,15 @@ export default class UploadFiles extends Component {
                     ref={this.fileInput}
                     onChange={this.handleChange}
                   />
-                  <label htmlFor="file">{this.state.files ? 'Upload': 'choose a file'}</label>
+                  {
+                    this.state.files
+                    ? <button type="submit">Upload</button>
+                    : <label htmlFor="file">choose a file</label>
+                  }
+                  
                 </div>
               </div>
+              <code></code>
             </div>
             <div className="col-7" style={{ border: 'solid 1px rgb(226, 227, 228)'}}>
               <div className="font-weight-lighter">UPLOADING ... {`${this.state.files.length} file(s)` }</div>
