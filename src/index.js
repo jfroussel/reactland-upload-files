@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import UploadImg from '../upload.svg'
 import './styles.scss'
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import axios from 'axios'
 
 const END_POINT = 'http://localhost:8000/upload'
 
