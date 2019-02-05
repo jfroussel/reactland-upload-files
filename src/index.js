@@ -5,8 +5,6 @@ import PropTypes from 'prop-types'
 import UploadImg from '../upload.svg'
 import './styles.scss'
 import ProgressBar from 'react-bootstrap/ProgressBar'
-import axios from 'axios'
-
 
 const END_POINT = 'http://localhost:8000/upload'
 
@@ -20,7 +18,6 @@ export default class UploadFiles extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      files: '',
       label: '',
       value: '45',
       now: 60,
@@ -28,18 +25,11 @@ export default class UploadFiles extends Component {
       loader: 0
 
     }
-
-    this.fileInput = React.createRef()
-    //this.handleChange = this.handleChange.bind(this)
-    //this.handleSubmit = this.handleSubmit.bind(this)
-    this.resetFiles = this.resetFiles.bind(this)
-
-
   }
 
   handleSelectedFile = event => {
     this.setState({
-      selectedFile: event.target.files[0],
+      selectedFile: event.target.files,
       loader: 0
     })
   }
@@ -61,26 +51,6 @@ export default class UploadFiles extends Component {
   }
 
 
-  /*
-  handleChange(event) {
-    event.preventDefault()
-    this.setState({ files: this.fileInput.current.files })
-    console.log('file input test : ', this.fileInput.current.files)
-  }
-
-  handleSubmit(event) {
-    event.preventDefault()
-    const fd = new FormData()
-    let files = [...this.state.files]
-    files.map((file) => {
-      fd.append(file)
-
-    })
-    console.log('submit ', files)
-    console.log('fd : ', fd)
-  }
-  */
-
   bytesToSize(bytes) {
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
     if (bytes === 0) return 'n/a'
@@ -89,13 +59,11 @@ export default class UploadFiles extends Component {
     return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
   }
 
-  resetFiles() {
-    if (this.state.files) {
-      return this.setState({ files: '' })
+  resetFiles = () => {
+    if (this.state.selectedFile) {
+      this.setState({ selectedFile: '' })
     }
   }
-
-
 
 
   static propTypes = {
@@ -109,7 +77,7 @@ export default class UploadFiles extends Component {
 
     const Upload = () => {
       return (
-        [...this.state.files].map((e, i) => {
+        [...this.state.selectedFile].map((e, i) => {
           return (
             <div className="row" key={i}>
               <div className="col-1">
@@ -160,12 +128,10 @@ export default class UploadFiles extends Component {
                     type="file"
                     multiple
                     id="file"
-                    //ref={this.fileInput}
-                    //onChange={this.handleChange}
                     onChange={this.handleSelectedFile}
                   />
                   {
-                    this.state.files
+                    this.state.selectedFile
                       ? <button type="submit" onClick={this.handleUpload}>Upload</button>
                       : <label htmlFor="file">choose a file</label>
                   }
@@ -175,10 +141,10 @@ export default class UploadFiles extends Component {
               <code></code>
             </div>
             <div className="col-7" style={{ border: 'solid 1px rgb(226, 227, 228)' }}>
-              <div className="font-weight-lighter">UPLOADING ... {`${this.state.files.length} file(s)`}</div>
+              <div className="font-weight-lighter">UPLOADING ... {`${this.state.selectedFile.length} file(s)`}</div>
               <div className="text-right">
                 {
-                  this.state.files ? <RenderResetButton /> : null
+                  this.state.selectedFile ? <RenderResetButton /> : null
                 }
 
               </div>
