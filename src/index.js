@@ -6,6 +6,7 @@ import UploadImg from '../upload.svg'
 import './styles.scss'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import axios from 'axios'
+import _ from 'lodash'
 
 const END_POINT = 'http://localhost:8000/upload'
 
@@ -29,15 +30,21 @@ export default class UploadFiles extends Component {
   }
 
   handleSelectedFile = event => {
+    
     this.setState({
       selectedFile: event.target.files,
       loader: 0
     })
-  }
+  } 
+  
 
   handleUpload = () => {
+    
     const data = new FormData()
-    data.append('file', this.state.selectedFile, this.state.selectedFile.name)
+    for(var i = 0; i < this.state.selectedFile.length; i++) {
+      data.append('file', this.state.selectedFile[i], this.state.selectedFile[i].name)
+    }
+    
     axios
       .post(END_POINT, data, {
         onUploadProgress: ProgressEvent => {
@@ -49,8 +56,8 @@ export default class UploadFiles extends Component {
       .then(res => {
         console.log('status :', res.statusText)
       })
+      
   }
-
 
   bytesToSize(bytes) {
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
@@ -66,16 +73,13 @@ export default class UploadFiles extends Component {
     }
   }
 
-
   static propTypes = {
     //text: PropTypes.string
   }
 
   render() {
     const { value } = this.state
-    console.log('THIS STATE : ', this.state)
-
-
+   
     const Upload = () => {
       return (
         [...this.state.selectedFile].map((e, i) => {
