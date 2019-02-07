@@ -79,6 +79,7 @@ export default class UploadFiles extends Component {
 
   render() {
     const { value } = this.state
+    const { title, message, chooseButtonTitle, uploadButtonTitle } = this.props
    
     const Upload = () => {
       return (
@@ -124,10 +125,10 @@ export default class UploadFiles extends Component {
         <form id="myform" onSubmit={this.handleSubmit}>
           <div className="row pt-3">
             <div className="col-4 text-center mr-2" style={{ border: 'solid 1px rgb(226, 227, 228)' }}>
-              <h3 className="text-center text-uppercase font-weight-lighter">File Upload</h3>
+              <h3 className="text-center text-uppercase font-weight-lighter">{title}</h3>
               <div className="fileUpload">
                 <img className="svg" src={UploadImg}></img>
-                <div className="font-weight-lighter pb-3">Drag Files to Upload</div>
+                <div className="font-weight-lighter pb-3">{message}</div>
                 <div className="wrapper">
                   <input
                     type="file"
@@ -137,8 +138,8 @@ export default class UploadFiles extends Component {
                   />
                   {
                     this.state.selectedFile
-                      ? <button type="submit" onClick={this.handleUpload}>Upload</button>
-                      : <label htmlFor="file">choose a file</label>
+                      ? <button type="submit" onClick={this.handleUpload}>{uploadButtonTitle}</button>
+                      : <label htmlFor="file">{chooseButtonTitle}</label>
                   }
 
                 </div>
